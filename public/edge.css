@@ -1,0 +1,214 @@
+/******************************************************************************
+START Glitch hello-app default styles
+
+The styles in this section do some minimal CSS resets, set default fonts and 
+colors, and handle the layout for our footer and "Remix on Glitch" button. If
+you're new to CSS they may seem a little complicated, but you can scroll down
+to this section's matching END comment to see page-specific styles.
+******************************************************************************/
+/* Our default values set as CSS variables */
+:root {
+  --color-bg: mistyrose;
+  --color-text-main: black;
+  --color-text-header: crimson;
+  --color-primary: yellow;
+  --color-secondary: green;
+  --color-highlight: purple;
+  --font-family: sans-serif;
+}
+
+/* Basic page style resets */
+* {
+  box-sizing: border-box;
+}
+[hidden] {
+  display: none !important;
+}
+header {
+  background-image: url(https://cdn.glitch.global/b9ddfd2b-2f53-44df-899d-104fd1bbe1a5/jamgingham.jpg?v=1736422637209);
+  background-size: contain;
+  background-repeat: no-repeat;
+  max-width: 900px;
+  width:85vw;
+  margin: auto;
+  height:10rem;
+  padding-top:1rem;
+  margin-top:4rem;
+}
+
+/* Our remix on glitch button */
+.btn--remix {
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  line-height: 1rem;
+  font-weight: 500;
+  height: 2.75rem;
+  align-items: center;
+  cursor: pointer;
+  background: #ffffff;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #000;
+  white-space: nowrap;
+  margin-left: auto;
+}
+.btn--remix img {
+  margin-right: 0.5rem;
+}
+.btn--remix:hover {
+  background-color: var(--color-primary);
+}
+
+/* Navigation grid */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem auto 0;
+  padding: 0 0 0.75rem 0;
+  max-width: 900px;
+  flex-wrap: wrap;
+}
+
+/******************************************************************************
+END Glitch hello-app default styles
+******************************************************************************/
+
+/* Page structure */
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-bg);
+}
+.wrapper {
+  place-items: center;
+  margin: 2.5rem 1rem 0;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  margin: 0 auto;
+  border-top:3px solid var(--color-text-header);
+  border-bottom:3px solid var(--color-text-header);
+  padding-top:1rem;
+  padding-bottom:1rem;
+}
+h1 {
+  margin: auto 2rem 0 2rem;
+  width: 85vw;
+  max-width: 900px;
+  font-size: 2.8rem;
+  padding-bottom:6rem;
+}
+header:after {
+  content: '🍓🥪';
+  width:100%;
+  text-align:right;
+  display:block;
+  font-size:small;
+}
+
+h2 {
+  color: var(--color-secondary);
+}
+/* Typography */
+p {
+  margin: 0.5rem 0 0.5rem 0;
+  line-height: 1.5 !important;
+  font-size: 1rem;
+}
+ul > li,
+ol > li {
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+ul {
+  padding: 0 0 0 18px;
+  margin: 0;
+}
+ul.no-bullet {
+  list-style-type: none;
+}
+
+/* Link styles */
+
+a:not(.titlelink):hover {
+  background: var(--color-primary);
+  text-decoration: none;
+}
+a:not(.btn--remix):not(.titlelink):link,
+a:not(.btn--remix):not(.titlelink):visited {
+  color: var(--color-text-header);
+  font-weight: bold;
+}
+h1 a:link,
+h1 a:visited {
+  text-decoration: none;
+  color: var(--color-text-header);
+  background:var(--color-bg);
+}
+a.titlelink:hover {
+  color: var(--color-text-main);
+}
+
+/* Layout: Home */
+.home {
+  justify-content: left;
+}
+
+/* Post */
+.post {
+  place-items: normal;
+  margin-top:0;
+}
+location-indicator {
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  background: var(--color-primary);
+  font-size: 1rem;
+  line-height: 2rem;
+  text-align: center;
+  margin: auto;
+  border-bottom:1px solid #eeee00;
+}
+.category {
+  font-weight: bold;
+  color: var(--color-highlight);
+}
+#pics {
+  display: flex;
+  flex-direction: row;
+  width: 90vw;
+  max-width: 900px;
+  margin: auto;
+  padding-top: 2rem;
+}
+#pics img {
+  max-width: 5rem;
+  vertical-align: middle;
+}
+#pics div {
+  padding-top: 2rem;
+  padding-left: 1rem;
+}
+p.info {
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+.meta {
+  margin-bottom:1rem;
+}
+.meta span {
+  margin-right:1rem;
+}
+.post img {
+  width:80vw;
+  max-width:600px;
+}
+.date {
+  font-style:italic;
+}

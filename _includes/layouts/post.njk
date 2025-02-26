@@ -1,28 +1,47 @@
 ---
 layout: layouts/base.njk
+templateClass: tmpl-home
 ---
-{# Only include the syntax highlighter CSS on blog posts, included with the CSS per-page bundle #}
-{%- css %}{% include "node_modules/prismjs/themes/prism-okaidia.css" %}{% endcss %}
-{%- css %}{% include "public/css/prism-diff.css" %}{%- endcss %}
-<h1>{{ title }}</h1>
 
-<ul class="post-metadata">
-	<li><time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time></li>
-	{%- for tag in tags | filterTagList %}
-	{%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-	<li><a href="{{ tagUrl }}" class="post-tag">{{ tag }}</a>{%- if not loop.last %}, {% endif %}</li>
-	{%- endfor %}
-</ul>
+{# This is the template for individual blog posts–it builds the front matter properties into the page #}
 
-{{ content | safe }}
+<div class="wrapper post">
+  <div class="content">
+  <div>
+    {# The post front matter includes the title property #}
+    <h2 class='postTitle'>{{title}}</h2>
 
-{%- if collections.posts %}
-{%- set previousPost = collections.posts | getPreviousCollectionItem %}
-{%- set nextPost = collections.posts | getNextCollectionItem %}
-{%- if nextPost or previousPost %}
-<ul class="links-nextprev">
-	{%- if previousPost %}<li class="links-nextprev-prev">← Previous<br> <a href="{{ previousPost.url }}">{{ previousPost.data.title }}</a></li>{% endif %}
-	{%- if nextPost %}<li class="links-nextprev-next">Next →<br><a href="{{ nextPost.url }}">{{ nextPost.data.title }}</a></li>{% endif %}
-</ul>
-{%- endif %}
-{%- endif %}
+    <div class="meta">
+    <span class="category">
+      {{category}}
+    </span>
+    <span class="geo">
+      <a target="_blank" href="https://maps.google.com/?q={{geo}}">directions</a> 🗺️
+    </span>
+    </div>
+    
+    <img src="{{ image }}" alt="{{imgalt}}"/>
+    <p class="date">
+      {{ date | htmlDateString }}
+    </p>
+    
+    {# Content from the body of the post markdown appears here #}
+    {{ content | safe }}
+    <div class="controls">
+    {# The previous and next post data is added in .eleventy.js #}
+    {% if prevPost.url %}
+      <p>
+        <strong>Previous post</strong>: 
+        <a class="previous" href="{{ prevPost.url }}">{{ prevPost.data.title }}</a>
+      </p>
+    {% endif %}
+    {% if nextPost.url %}
+      <p>
+        <strong>Next post</strong>: 
+        <a class="next" href="{{ nextPost.url }}">{{ nextPost.data.title }}</a>
+      </p>
+    {% endif %}
+    </div>
+  </div>
+  </div>
+</div>

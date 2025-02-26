@@ -1,69 +1,40 @@
-<!doctype html>
-<html lang="{{ metadata.language }}">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>{{ title or metadata.title }}</title>
-		<meta name="description" content="{{ description or metadata.description }}">
-		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="{{ metadata.title }}">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    {# This is the base template for the site–other templates extend this one #}
+    
+    <meta charset="utf-8" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="/public/style.css" />
+    <meta name="description" content="{{description}}"/>
+    <script src="/public/where.js" type="module"></script>
+  </head>
+  <body>
+    {# Our location indicator component for origin and edge #}
+    <location-indicator>This is the origin site from somewhere US</location-indicator>
+  <main>
+    <header><h1><a href="/" class="titlelink">The Jam Sandwich</a></h1></header>
+    {# Page or post content will appear here #}
+  
+    {{ content | safe }}
 
-		{#- Uncomment this if you’d like folks to know that you used Eleventy to build your site!  #}
-		{#- <meta name="generator" content="{{ eleventy.generator }}"> #}
+    <div id="pics">
+      <img src="https://cdn.glitch.com/cad20829-cd7f-405a-95e8-5e17b206a304%2Fillustration.svg?v=1618198438357" alt="11ty"/>
+      <img src="https://cdn.glitch.global/b9ddfd2b-2f53-44df-899d-104fd1bbe1a5/jam-buddy.png?v=1736336757662" alt="jam pal"/>
+      <div>
+        This is an 11ty site built for a Glitch + Fastly jam... 
+      </div>
+    </div>
+      <footer class="footer">
+        <a class="btn--remix" target="_top" href="https://glitch.com/edit/#!/remix/jam-sandwich">
+        <img src="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2FLogo_Color.svg?v=1618199565140" alt="" /> 
+        Remix on Glitch
+        </a>
+      </footer>
+    
+  </main>
 
-		{#-
-		Plain-text bundles are provided via the `eleventy-plugin-bundle` plugin:
-		1. CSS:
-			* Add to a per-page bundle using `{% css %}{% endcss %}`
-			* Retrieve bundle content using `{% getBundle "css" %}` or `{% getBundleFileUrl "css" %}`
-		2. Or for JavaScript:
-			* Add to a per-page bundle using `{% js %}{% endjs %}`
-			* Retrieve via `{% getBundle "js" %}` or `{% getBundleFileUrl "js" %}`
-		3. Learn more: https://github.com/11ty/eleventy-plugin-bundle
-		#}
-
-		{#- Add an arbitrary string to the bundle #}
-		{%- css %}/* This is an arbitrary CSS string added to the bundle */{% endcss %}
-		{#- Add the contents of a file to the bundle #}
-		{%- css %}{% include "public/css/index.css" %}{% endcss %}
-		{#- Or you can add from node_modules #}
-		{# {%- css %}{% include "node_modules/prismjs/themes/prism-okaidia.css" %}{% endcss %} #}
-
-		{#- Render the CSS bundle using inlined CSS (for the fastest site performance in production) #}
-		<style>{% getBundle "css" %}</style>
-		{#- Renders the CSS bundle using a separate file, if you can't set CSP directive style-src: 'unsafe-inline' #}
-		{#- <link rel="stylesheet" href="{% getBundleFileUrl "css" %}"> #}
-
-		{#- Add the heading-anchors web component to the JavaScript bundle #}
-		{%- js %}{% include "node_modules/@zachleat/heading-anchors/heading-anchors.js" %}{% endjs %}
-	</head>
-	<body>
-		<a href="#skip" class="visually-hidden">Skip to main content</a>
-
-		<header>
-			<a href="/" class="home-link">{{ metadata.title }}</a>
-
-			{#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
-			<nav>
-				<h2 class="visually-hidden">Top level navigation menu</h2>
-				<ul class="nav">
-				{%- for entry in collections.all | eleventyNavigation %}
-					<li class="nav-item"><a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a></li>
-				{%- endfor %}
-				</ul>
-			</nav>
-		</header>
-
-		<main id="skip">
-			<heading-anchors>
-				{{ content | safe }}
-			</heading-anchors>
-		</main>
-
-		<footer>
-			<p><em>Built with <a href="https://www.11ty.dev/">{{ eleventy.generator }}</a></em></p>
-		</footer>
-
-		<!-- This page `{{ page.url }}` was built on {% currentBuildDate %} -->
-		<script type="module" src="{% getBundleFileUrl "js" %}"></script>
-	</body>
+  </body>
 </html>

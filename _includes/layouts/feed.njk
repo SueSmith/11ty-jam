@@ -1,0 +1,19 @@
+---
+permalink: '/feed.json'
+---
+{
+  "posts": [
+    {% for item in collections.posts %}
+      {
+        "title": "{{ item.data.title }}",
+        "url": "{{ item.url }}",
+        "geo": "{{ item.data.geo }}",
+        "category": "{{ item.data.category }}",
+        "description": "{{ item.data.description }}",
+        "date": "{{ item.data.date | htmlDateString }}",
+        "image": "{{ item.data.image }}",
+        "imgalt": "{{ item.data.imgalt }}"
+      }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
